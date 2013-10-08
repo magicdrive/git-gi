@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 #
 # git-gi
@@ -40,6 +40,23 @@ gi() {
     echo
 }
 
+gi_with_output() {
+    local gi_result="$(gi "$@")"
+    local gitignore_file="$(pwd)/.gitignore"
+
+    if [ -e $(pwd)/.gitignore ];then
+        echo "${gi_result}" >>  ${gitignore_file}
+        local mesg="Have appended ${gitignore_file}"
+    else
+        echo "${gi_result}" >  ${gitignore_file}
+        local mesg="Create ${gitignore_file}"
+    fi
+    echo "${gi_result}"
+    echo
+    echo
+    echo "${mesg}"
+}
+
 list() {
     support_list=$(for x in $(ls ${data_dir});do
         echo -n ${x} | perl -pe "s/(?:^([a-zA-z0-9\+-_]+).gitignore$)/\$1 /"
@@ -55,6 +72,10 @@ main() {
             ;;
         -h)
             usage_exit
+            ;;
+        -f)
+            shift
+            gi_with_output "$@"
             ;;
         *)
             gi "$@"
