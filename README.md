@@ -4,7 +4,7 @@ git-gi
 NAME
 ----
 git-gi - Generate useful .gitignore files for your project. 
- 
+  
   gitignore files forked by [https://github.com/joeblau/gitignore.io](https://github.com/joeblau/gitignore.io).
   
   I created for the purpose of off-line use of [http:gitignore.io](http:gitignore.io).
@@ -17,12 +17,14 @@ Synopsis
 Usage
 -----
     git-gi commands are:
-      list    - lists the operating systems, programming languages and IDE input types
-      :types: - generates .gitignore files for types of operating systems, programming languages or IDEs
+      -h      - show this help
+      -f      - write to .gitignore under the current directory.
+      list    - lists the operating systems, programming languages and IDE input types.
+      :types: - generates .gitignore files for types of operating systems, programming languages or IDEs.
   
   
-    exsample) 
-    git gi rails ruby vim emacs  # export gitignore strings for rails,ruby,vim and emacs
+    exsample)
+    git gi -f rails ruby vim emacs  # export gitignore strings for rails,ruby,vim and emacs. and write gitignore
 
 
 LICENSE
