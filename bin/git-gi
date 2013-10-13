@@ -12,13 +12,17 @@ echo() { /bin/echo "$@"; }
 
 usage_exit() {
     cat<<EOS
-usage: git gi [list] :types: [...]
+Usage: git gi [-h| --help] [-f] [list] :types: [...]
 
     git-gi commands are:
-      -h      - show this help
-      -f      - write to .gitignore under the current directory.
-      list    - lists the operating systems, programming languages and IDE input types.
-      :types: - generates .gitignore files for types of operating systems, programming languages or IDEs.
+      -h           - show this help
+      --help       - show manpage
+      -f | --write - write to .gitignore under the current directory.
+      -l | --list  - lists the operating systems, programming languages and IDE input types.
+      :types:      - generates .gitignore files for types of operating systems, programming languages or IDEs.
+
+    ex)
+        git gi -f linux ruby vim   # add a postscript to gitignore on currentdir.
 
 EOS
     exit 1
@@ -42,7 +46,7 @@ gi() {
     echo
 }
 
-gi_with_output() {
+gi_with_write() {
     local gi_result="$(gi "$@")"
     local gitignore_file="$(pwd)/.gitignore"
 
@@ -60,24 +64,26 @@ gi_with_output() {
 }
 
 list() {
-    support_list=$(for x in $(ls ${data_dir});do
-        echo -n ${x} | perl -pe "s/(?:^([a-zA-z0-9\+-_]+).gitignore$)/\$1 /"
-    done)
-    echo ${support_list}
+    support_list="$(
+        for x in $(ls ${data_dir});do
+            echo -n ${x} | perl -pe "s/(?:^([a-zA-z0-9\+-_]+).gitignore$)/\$1\t/"
+        done
+    )"
+    echo "${support_list}"
 }
 
 main() {
     [ $# -eq "0" ] && usage_exit
     case "$1" in
-        list)
+        -l | --list)
             list && exit 1;
             ;;
         -h)
             usage_exit
             ;;
-        -f)
+        -f | --write)
             shift
-            gi_with_output "$@"
+            gi_with_write "$@"
             ;;
         *)
             gi "$@"
