@@ -17,14 +17,14 @@ Synopsis
 Usage
 -----
     git-gi commands are:
-      -h      - show this help
-      -f      - write to .gitignore under the current directory.
-      list    - lists the operating systems, programming languages and IDE input types.
-      :types: - generates .gitignore files for types of operating systems, programming languages or IDEs.
-  
-  
-    exsample)
-    git gi -f rails ruby vim emacs  # export gitignore strings for rails,ruby,vim and emacs. and write gitignore
+      -h           - show usage.
+      --help       - show manpage.
+      -f | --write - write to .gitignore under the current directory.
+      -l | --list  - lists the operating systems, programming languages and IDE input types.
+      :types:      - generates .gitignore files for types of operating systems, programming languages or IDEs.
+
+    example)
+        git gi -f linux ruby vim   # add a postscript to gitignore on currentdir.
 
 
 LICENSE
