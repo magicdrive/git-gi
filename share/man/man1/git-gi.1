@@ -5,11 +5,11 @@ git\-gi \- Generate useful .gitignore files for your project.
 .TP
 gitignore files forked by https://github.com/joeblau/gitignore.io
 .UR https://github.com/joeblau/gitignore.io
-.UE .
+.UE \&.
 .TP
 I created for the purpose of off\-line use of http:gitignore.io
 .UR http:gitignore.io
-.UE .
+.UE \&.
 .SH Synopsis
 .RS
 .IP \(bu 2
@@ -20,12 +20,13 @@ usage: git gi [list] :types: [...]
 .RS
 .nf
 git-gi commands are:
-  -h      - show this help
-  -f      - write to .gitignore under the current directory.
-  list    - lists the operating systems, programming languages and IDE input types.
-  :types: - generates .gitignore files for types of operating systems, programming languages or IDEs.
-exsample)
-git gi -f rails ruby vim emacs  # export gitignore strings for rails,ruby,vim and emacs. and write gitignore
+  -h           - show usage.
+  --help       - show this manpage.
+  -f | --write - write to .gitignore under the current directory.
+  -l | --list  - lists the operating systems, programming languages and IDE input types.
+  :types:      - generates .gitignore files for types of operating systems, programming languages or IDEs.
+example)
+    git gi -f linux ruby vim   # add a postscript to gitignore on currentdir.
 .fi
 .RE
 .SH LICENSE
